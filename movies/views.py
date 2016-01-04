@@ -15,7 +15,7 @@ class IndexView(generic.ListView): #generic.ListView => Display list of objects!
     context_object_name = 'thisweek_movies_released'
 
     def get_queryset(self):
-        return movies.objects.filter(release_date__gte = timezone.now() - datetime.timedelta(days=7)).order_by('-release_date')[:5]
+        return movies.objects.filter(release_date__range = (timezone.now() - datetime.timedelta(days=7),timezone.now()).order_by('-release_date')[:5]
 
 
 class MovieDetailView(generic.DetailView):
